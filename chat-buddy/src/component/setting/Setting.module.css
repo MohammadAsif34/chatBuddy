@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+}
+.SettingDiv {
+  margin: 0 0 5px 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 500px;
+  height: 500px;
+  border-radius: 8px;
+  background-color: #ffff;
+  box-shadow: 0 1px 5px #17ec92;
+  z-index: 10;
+  overflow: hidden;
+}
+.SettingSidebar {
+  width: 35%;
+  height: 100%;
+  padding: 5px;
+  color: black;
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px 0 0 8px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ul {
+    padding: 5px;
+    /* display: flex; */
+    list-style: none;
+    li {
+      padding: 5px 2px;
+      i {
+        padding: 0 4px;
+        margin-right: 5px;
+      }
+    }
+    li:hover {
+      background-color: gray;
+      border-radius: 4px;
+    }
+  }
+}
+.SettingSidebar > span {
+  padding: 5px 5px;
+  i {
+    padding: 0 4px;
+    margin-right: 5px;
+  }
+}
+.SettingSidebar > span:hover {
+  background-color: gray;
+  border-radius: 4px;
+}
