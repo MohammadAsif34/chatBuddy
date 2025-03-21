@@ -14,7 +14,7 @@ const ChatProfiles = () => {
             <div className={styles.filterDivIcons}>
               <span className="bi bi-pencil-square" title="Add New Chat"></span>
               <span className="bi bi-filter" title="Filter"></span>
-            </div>  
+            </div>
           </div>
           <div className={styles.searchDiv}>
             <span className="bi bi-search"></span>
@@ -22,8 +22,12 @@ const ChatProfiles = () => {
           </div>
         </div>
         <div className={styles.ChatProfileList}>
-          {[1, 2, 3].map((item, index) => (
-            <Profile />
+          {[1, 2, 3, 4, 5].map((item, index) => (
+            <>
+              <Profile />
+              <Profile />
+              <Profile />
+            </>
           ))}
         </div>
       </div>

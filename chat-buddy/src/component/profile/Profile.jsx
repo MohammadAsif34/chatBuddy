@@ -6,7 +6,7 @@ const Profile = () => {
     <>
       <div className={styles.profileDiv}>
         <div className={styles.avatar}>
-          <img src="./avatar2.png" alt="" />
+          <img src="/chatBuddy/avatar2.png" alt="" />
         </div>
         <div className={styles.info}>
           <div className={styles.name_status}>

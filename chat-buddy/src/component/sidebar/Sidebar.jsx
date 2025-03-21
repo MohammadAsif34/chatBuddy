@@ -50,7 +50,7 @@ const Sidebar = () => {
             title="Profile"
             onClick={() => SetIsActiveSetting(!isActiveSetting)}
           >
-            <img src="./avatar1.png" alt="" />
+            <img src="/chatBuddy/avatar1.png" alt="" />
           </div>
           {isActiveSetting && <Setting />}
         </div>

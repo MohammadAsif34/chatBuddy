@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Setting.module.css";
+import SettingSidebarContent from "./SettingSidebarContent";
 
 // const Chats = () => {};
 // const Video_Voice = () => {};
@@ -9,9 +10,7 @@ import styles from "./Setting.module.css";
 // const Profile = () => {};
 
 const Setting = () => {
-  const [page, setPage] = useState(General());
-  const General = () => {};
-  const Account = () => {};
+  const [page, setPage] = useState();
 
   return (
     <>
@@ -47,7 +46,9 @@ const Setting = () => {
             <i className="bi bi-person-circle"></i>Profile
           </span>
         </div>
-        <div>{page}</div>
+        <div className={styles.settingContent}>
+          <SettingSidebarContent value="General" />
+        </div>
       </div>
     </>
   );

@@ -25,12 +25,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+
   .avatar {
     width: 35px;
     height: 35px;
@@ -45,11 +40,17 @@
     }
   }
 }
-ul > li > span {
-  padding: 8px 12px;
-  cursor: pointer;
+.profile > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-ul > li > span:hover {
+.SidebarDiv span:hover {
   background-color: #1ae8a3;
   border-radius: 4px;
+}
+.SidebarDiv span {
+  padding: 8px 12px;
+  cursor: pointer;
 }
