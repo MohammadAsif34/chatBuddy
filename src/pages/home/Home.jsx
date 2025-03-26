@@ -14,7 +14,7 @@ const Home = () => {
     let status = sessionStorage.getItem("session");
     if (!status) {
       // alert("user not login");
-      return navigate("/login");
+      return; //navigate("/login");
     }
     try {
       if (status) status = JSON.parse(status);
@@ -28,7 +28,7 @@ const Home = () => {
       }
     } catch (error) {
       alert("user not login");
-      navigate("/login");
+      // navigate("/login");
       console.log(error);
     }
   }, []);
