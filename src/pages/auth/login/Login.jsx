@@ -8,14 +8,10 @@ const Login = () => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(userContext);
   const [loginStatus, setLoginStatus] = useState("");
-  // const [sessionData, setSessionData] = useState(null);
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:3000/api/auth/login";
 
-  // const handlesession = (data) => {
-  //   sessionStorage.setItem("session", data);
-  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -24,16 +20,13 @@ const Login = () => {
         .catch((err) => alert(err));
       setUser(res.data);
 
-      // setSessionData({ userId: user._id, isLogin: true });
       const sessionData = { userId: user._id, isLogin: true };
       sessionStorage.setItem("session", JSON.stringify(sessionData));
-      // alert(JSON.stringify(sessionData));
-      // handlesession(sessionData);
 
       setLoginStatus("Successfull login, " + user.name + ", " + user._id);
 
       setTimeout(() => {
-        navigate("/chatBuddy");
+        navigate("/");
       }, 1000);
     } catch (error) {
       console.log(error);
@@ -46,7 +39,7 @@ const Login = () => {
     <>
       <a
         style={{ margin: "0 20px", cursor: "pointer" }}
-        onClick={() => navigate("/chatBuddy")}
+        onClick={() => navigate("/")}
       >
         <i className="bi bi-arrow-bar-left"></i>Back
       </a>
@@ -75,7 +68,7 @@ const Login = () => {
             Don't have an account ?{" "}
             <a
               style={{ cursor: "pointer", color: "blue" }}
-              onClick={() => navigate("/chatBuddy/register")}
+              onClick={() => navigate("/register")}
             >
               register
             </a>

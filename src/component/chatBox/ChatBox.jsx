@@ -3,7 +3,10 @@ import styles from "./ChatBox.module.css";
 import { userContext } from "../../context/UserContext";
 
 const ChatBox = () => {
-  const { client } = useContext(userContext);
+  const { client, setClient } = useContext(userContext);
+  const [value, setValue] = useState(null);
+
+  const handleClient = () => {};
 
   return (
     <>

@@ -34,15 +34,22 @@ const Profile = () => {
         <p></p>
       </div>
       <div className={styles.logout}>
-        <button
-          onClick={() => {
-            sessionStorage.clear();
-            navigate("/chatBuddy/login");
-          }}
-        >
-          Logout
-        </button>
-        <button onClick={() => navigate("/chatBuddy/login")}>login</button>
+        {user ? (
+          <button
+            onClick={() => {
+              try {
+                sessionStorage.clear();
+                window.location.href = "/";
+              } catch (error) {
+                alert(error);
+              }
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <button onClick={() => navigate("login")}>login</button>
+        )}
         <p>
           Chat history on this computer will be cleared when you are log out.
         </p>

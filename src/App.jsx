@@ -9,27 +9,28 @@ import {
   createBrowserRouter,
   createHashRouter,
 } from "react-router-dom";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
-const App = () => {
-  const Layout = () => {
-    return (
-      <>
-        <Outlet></Outlet>
-      </>
-    );
-  };
-  const router = createHashRouter([
-    {
-      path: "/chatBuddy",
-      element: <Layout />,
-      children: [
-        { path: "/chatBuddy/", element: <Home /> },
-        { path: "/chatBuddy/login", element: <Login /> },
-        { path: "/chatBuddy/register", element: <Register /> },
-      ],
-    },
-  ]);
-  return <RouterProvider router={router} />;
+const Layout = () => {
+  return <Outlet></Outlet>;
 };
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "", element: <Home /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+    ],
+  },
+  // {
+  //   path: "*",
+  //   element: <PageNotFound />,
+  // },
+]);
+function App() {
+  return <RouterProvider router={router} />;
+}
 
 export default App;

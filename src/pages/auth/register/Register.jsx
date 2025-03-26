@@ -8,7 +8,7 @@ const Register = () => {
     <>
       <a
         style={{ margin: "0 20px", cursor: "pointer" }}
-        onClick={() => navigate("/chatBuddy")}
+        onClick={() => navigate("/")}
       >
         <i className="bi bi-arrow-bar-left"></i>Back
       </a>

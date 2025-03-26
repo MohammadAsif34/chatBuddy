@@ -17,6 +17,17 @@ const ChatProfiles = () => {
       })
       .catch((err) => console.log(err));
   }, [url]);
+  const handleClient = (userId) => {
+    const url = `http://localhost:3000/api/user/user`;
+
+    axios
+      .post(url, { userId }, { withCredentials: true })
+      .then((res) => {
+        setClient(res.data);  
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className={styles.ChatProfilesDiv}>
@@ -38,7 +49,7 @@ const ChatProfiles = () => {
         <div className={styles.ChatProfileList}>
           {user?.contacts?.map((item, index) => (
             <>
-              <div onClick={() => setClient(item)} key={index}>
+              <div onClick={() => handleClient(item)}>
                 <Profile item={item} />
               </div>
             </>
