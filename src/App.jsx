@@ -3,7 +3,12 @@ import Home from "./pages/home/Home";
 import Sidebar from "./component/sidebar/Sidebar";
 import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  createHashRouter,
+} from "react-router-dom";
 
 const App = () => {
   const Layout = () => {
@@ -13,7 +18,7 @@ const App = () => {
       </>
     );
   };
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/chatBuddy",
       element: <Layout />,
