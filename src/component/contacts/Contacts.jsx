@@ -10,11 +10,13 @@ const ChatProfiles = () => {
     useContext(userContext);
   useEffect(() => {
     const fetchContacts = async () => {
+      const userId = currUser?._id;
+      // const url = `https://localhost:3000/api/user/${userId}/contacts`;
+      const url = `https://chatbuddy-api.onrender.com/api/user/${userId}/contacts`;
       if (!currUser?.contacts) return;
       try {
-        const userId = currUser?._id;
         await axios
-          .post(`http://localhost:3000/api/user/${userId}/contacts`)
+          .post(url)
           .then((res) => setContacts(res.data))
           .catch((err) => console.log(err.message));
       } catch (error) {
@@ -27,11 +29,11 @@ const ChatProfiles = () => {
   const handleContactChat = (data) => {
     setCurrChat(data);
     const fetchCurrChatMessage = async () => {
-      const url = `http://localhost:3000/api/message/${data.chatId}`;
-      const url2 = `https://chatbuddy-api.onrender.com/api/message/${data.chatId}`;
+      // const url = `http://localhost:3000/api/message/${data.chatId}`;
+      const url = `https://chatbuddy-api.onrender.com/api/message/${data.chatId}`;
       try {
         axios
-          .post(url2)
+          .post(url)
           .then((res) => setMessages(res.data))
           .catch((err) => console.log(err.message));
       } catch (error) {

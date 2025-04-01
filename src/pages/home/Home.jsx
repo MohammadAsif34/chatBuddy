@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
-  // loginedUserUrl = `http://localhost:3000/api/user/${userId}/user`;
   const navigate = useNavigate();
 
   const { currUser, setCurrUser, contacts, currChat } = useContext(userContext);
@@ -18,13 +17,14 @@ const Home = () => {
     //   return; //navigate("/login");
     // }
     const fetchLoginUser = async () => {
-      const url = `http://localhost:3000/api/user/${status.userId}/user`;
-      const url2 = `https://chatbuddy-api.onrender.com/api/user/${status.userId}/user`;
       let status = sessionStorage.getItem("session");
       if (status) status = JSON.parse(status);
+      const userId = status.userId;
+      //   const url = `http://localhost:3000/api/user/${status.userId}/user`;
+      const url = `https://chatbuddy-api.onrender.com/api/user/${userId}/user`;
       try {
         await axios
-          .post(url2)
+          .post(url)
           .then((res) => setCurrUser(res.data))
           .catch((err) => console.log(err.message));
       } catch (error) {
@@ -34,7 +34,6 @@ const Home = () => {
 
     fetchLoginUser();
   }, []);
-  // alert(currUser);
   return (
     <>
       <div className={styles.homePage}>
