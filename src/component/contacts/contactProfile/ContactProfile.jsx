@@ -24,4 +24,4 @@ const Profile = ({ item }) => {
   );
 };
 
-export default Profile;
+export default Profile; 

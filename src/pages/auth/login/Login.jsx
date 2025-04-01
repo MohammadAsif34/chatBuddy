@@ -11,12 +11,13 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:3000/api/auth/login";
+  const url2 = "https://chatbuddy-api.onrender.com/api/auth/login";
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const res = await axios
-        .post(url, { phone, password }, { withCredentials: true })
+        .post(url2, { phone, password }, { withCredentials: true })
         .catch((err) => alert(err));
       // setUser(res.data);
 

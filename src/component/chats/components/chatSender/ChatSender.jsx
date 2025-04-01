@@ -11,14 +11,12 @@ const ChatSender = () => {
     const chatId = currChat.chatId;
     const sender = currUser._id;
     const sentMssg = async () => {
+      const url = `http://localhost:3000/api/message/message`;
+      const url2 = `https://chatbuddy-api.onrender.com/api/message/message`;
       try {
         chatId, sender, mssg;
         const response = await axios
-          .post(
-            `http://localhost:3000/api/message/message`,
-            { chatId, sender, mssg },
-            { withCredentials: true }
-          )
+          .post(url2, { chatId, sender, mssg }, { withCredentials: true })
           .catch((err) => console.log(err.message));
       } catch (error) {
         console.log(error.message);

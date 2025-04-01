@@ -27,9 +27,11 @@ const ChatProfiles = () => {
   const handleContactChat = (data) => {
     setCurrChat(data);
     const fetchCurrChatMessage = async () => {
+      const url = `http://localhost:3000/api/message/${data.chatId}`;
+      const url2 = `https://chatbuddy-api.onrender.com/api/message/${data.chatId}`;
       try {
         axios
-          .post(`http://localhost:3000/api/message/${data.chatId}`)
+          .post(url2)
           .then((res) => setMessages(res.data))
           .catch((err) => console.log(err.message));
       } catch (error) {

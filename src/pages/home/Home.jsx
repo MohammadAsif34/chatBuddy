@@ -18,11 +18,13 @@ const Home = () => {
     //   return; //navigate("/login");
     // }
     const fetchLoginUser = async () => {
+      const url = `http://localhost:3000/api/user/${status.userId}/user`;
+      const url2 = `https://chatbuddy-api.onrender.com/api/user/${status.userId}/user`;
       let status = sessionStorage.getItem("session");
       if (status) status = JSON.parse(status);
       try {
         await axios
-          .post(`http://localhost:3000/api/user/${status.userId}/user`)
+          .post(url2)
           .then((res) => setCurrUser(res.data))
           .catch((err) => console.log(err.message));
       } catch (error) {
