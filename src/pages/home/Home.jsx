@@ -1,49 +1,50 @@
 import styles from "./Home.module.css";
 import React, { useContext, useEffect } from "react";
 import Sidebar from "../../component/sidebar/Sidebar";
-import ChatProfiles from "../../component/chatProfiles/ChatProfiles";
-import ChatBox from "../../component/chatBox/ChatBox";
+import Contacts from "../../component/contacts/Contacts";
+import ChatBox from "../../component/chats/chatBox/ChatBox";
 import { userContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
-  const { user, setUser, client, userRef } = useContext(userContext);
+  // loginedUserUrl = `http://localhost:3000/api/user/${userId}/user`;
   const navigate = useNavigate();
-  useEffect(() => {
-    let status = sessionStorage.getItem("session");
-    if (!status) {
-      // alert("user not login");
-      return; //navigate("/login");
-    }
-    try {
-      if (status) status = JSON.parse(status);
-      if (status.isLogin == true) {
-        const userId = status.userId;
-        const api = "http://localhost:3000/api/user/user";
-        axios
-          .post(api, { userId }, { withCredentials: true })
-          .then((res) => setUser(res.data))
-          .catch((err) => alert("something :: " + err));
-      }
-    } catch (error) {
-      alert("user not login");
-      // navigate("/login");
-      console.log(error);
-    }
-  }, []);
 
+  const { currUser, setCurrUser, contacts, currChat } = useContext(userContext);
+  useEffect(() => {
+    // if (!status) {
+    //   // alert("user not login");
+    //   return; //navigate("/login");
+    // }
+    const fetchLoginUser = async () => {
+      let status = sessionStorage.getItem("session");
+      if (status) status = JSON.parse(status);
+      try {
+        await axios
+          .post(`http://localhost:3000/api/user/${status.userId}/user`)
+          .then((res) => setCurrUser(res.data))
+          .catch((err) => console.log(err.message));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchLoginUser();
+  }, []);
+  // alert(currUser);
   return (
     <>
       <div className={styles.homePage}>
         <div className={styles.header}>
-          <span className="bi bi-chat-dots"></span>&nbsp;ChatBuddy [client :
-          {client?.name || "client"} ] , [User : {user?.name || "user"} ]
-          <button onClick={() => alert(JSON.stringify(user))}>data list</button>
+          <span className="bi bi-chat-dots"></span>&nbsp;ChatBuddy [CurrUser :
+          {currUser?.name || currUser || "null"}
+          {currUser?._id} ] , [CurrChat : {currChat?.name || currChat || "null"}{" "}
+          ]
         </div>
         <div className={styles.body}>
           <Sidebar />
-          <ChatProfiles />
+          <Contacts />
           <ChatBox />
         </div>
       </div>

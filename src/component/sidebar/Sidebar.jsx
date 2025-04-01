@@ -6,11 +6,7 @@ import React, { useContext, useRef, useState } from "react";
 const Sidebar = () => {
   const [isActiveSetting, SetIsActiveSetting] = useState(false);
   const [opt, SetOpt] = useState("");
-  const { userRef } = useContext(userContext);
-  const handleNavigation = () => {
-    alert("navigation clicked");
-  };
-  const handleProfileSetting = () => {};
+  const { currUser } = useContext(userContext);
 
   return (
     <>
@@ -18,11 +14,7 @@ const Sidebar = () => {
         <div className={styles.navItem}>
           <ul>
             <li>
-              <span
-                className="bi bi-list"
-                title="Open Navigation"
-                onClick={() => handleNavigation()}
-              ></span>
+              <span className="bi bi-list" title="Open Navigation"></span>
             </li>
             <li>
               <span className="bi bi-chat-left-text" title="Chats"></span>
@@ -61,10 +53,7 @@ const Sidebar = () => {
               SetOpt("Profile");
             }}
           >
-            <img
-              src={userRef.current?.avatar || "/chatBuddy/avatar1.png"}
-              alt=""
-            />
+            <img src={currUser?.avatar || "/chatBuddy/default_avatar.png"} />
           </div>
           {isActiveSetting && <Setting title={opt} />}
         </div>

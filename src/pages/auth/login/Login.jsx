@@ -18,12 +18,12 @@ const Login = () => {
       const res = await axios
         .post(url, { phone, password }, { withCredentials: true })
         .catch((err) => alert(err));
-      setUser(res.data);
+      // setUser(res.data);
 
-      const sessionData = { userId: user._id, isLogin: true };
+      const sessionData = { userId: res.data._id, isLogin: true };
       sessionStorage.setItem("session", JSON.stringify(sessionData));
 
-      setLoginStatus("Successfull login, " + user.name + ", " + user._id);
+      setLoginStatus("Successfull login, " + res.data.name);
 
       setTimeout(() => {
         navigate("/");

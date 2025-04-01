@@ -1,22 +1,29 @@
-import { createContext, useRef, useState } from "react";
+import { createContext, useState } from "react";
 
 export const userContext = createContext();
 export const UserContextProvider = ({ children }) => {
-  const [client, setClient] = useState(null);
-  const [user, setUser] = useState(null);
-  const userRef = useRef("user");
-  // const currChatRef = useRef("user");
+  // 1. currUSer  -> static
+  // 2. contact   ->  static
+  // 3. currChat  -> chnages frequently
+  // 4.
+  const [currUser, setCurrUser] = useState(null);
+  // const currUser = useRef(null);
+  const [contacts, setContacts] = useState(null);
+
   const [currChat, setCurrChat] = useState(null);
+  const [messages, setMessages] = useState(null);
+
   return (
     <userContext.Provider
       value={{
-        client,
-        setClient,
-        user,
-        setUser,
-        userRef,
+        currUser,
+        setCurrUser,
+        contacts,
+        setContacts,
         currChat,
         setCurrChat,
+        messages,
+        setMessages,
       }}
     >
       {children}

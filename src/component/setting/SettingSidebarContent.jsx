@@ -1,62 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./SettingSidebarContent.module.css";
 import { userContext } from "../../context/UserContext";
-import Cookies from "js-cookie";
+import Profile from "./settingContent/Profile";
 import { useNavigate } from "react-router-dom";
-
-const Profile = () => {
-  const navigate = useNavigate();
-  // const token = Cookies.get("accesstoken");
-  const { client, user, userRef } = useContext(userContext);
-  // Cookies.set("token", "tiken sjkbsdlbsdg", { expires: 1 });
-  // const token = Cookies.get("token");
-  // alert(token);
-  return (
-    <>
-      <div className={styles.settingProfile}>
-        <div className={styles.avatar}>
-          <img src={user?.avatar || "/chatBuddy/avatar1.png"} alt="" />
-        </div>
-
-        <div className={styles.name}>
-          <p>{user?.name || "default_name"}</p>
-          <span className="bi bi-pencil"></span>
-        </div>
-        <div className={styles.about}>
-          <label>About</label>
-          <p>{user?.about || "default_about"}</p>
-          <span className="bi bi-pencil"></span>
-        </div>
-        <div className={styles.phone}>
-          <label>Phone number</label>
-          <p>+91 {user?.phone || "0000000000"}</p>
-        </div>
-        <p></p>
-      </div>
-      <div className={styles.logout}>
-        {user ? (
-          <button
-            onClick={() => {
-              try {
-                sessionStorage.clear();
-                window.location.href = "/";
-              } catch (error) {
-                alert(error);
-              }
-            }}
-          >
-            Logout
-          </button>
-        ) : (
-          <button onClick={() => navigate("login")}>login</button>
-        )}
-        <p>
-          Chat history on this computer will be cleared when you are log out.
-        </p>
-      </div>
-    </>
-  );
-};
 
 const General = () => {
   return <div>this is general div</div>;
@@ -82,23 +28,35 @@ const Storage = () => {
 const Help = () => {
   return <div>this is help div</div>;
 };
-const SettingSidebarContent = ({ Value }) => {
+const SettingSidebarContent = ({ value }) => {
+  const renderContent = () => {
+    switch (value) {
+      case "Gerneral":
+        return <General />;
+      case "Account":
+        return <Account />;
+      case "Chats":
+        return <Chats />;
+      case "VideoVoice":
+        return <VideoVoice />;
+      case "Notifications":
+        return <Notifications />;
+      case "Parsonalization":
+        return <Parsonalization />;
+      case "Storage":
+        return <Storage />;
+      case "Help":
+        return <Help />;
+      case "Profile":
+        return <Profile />;
+      default:
+        return <General />;
+    }
+  };
   return (
     <>
-      {Value}
-      <br />
-      <br />
-      {/* <Value />
-      <General />
-      <Chats />
-      <Account />
-      <Notifications />
-      <VideoVoice />
-      <Parsonalization />
-      <Storage />
-      <Help />
-      */}
-      <Profile />
+      <h3>{value}</h3>
+      {renderContent()}
     </>
   );
 };
