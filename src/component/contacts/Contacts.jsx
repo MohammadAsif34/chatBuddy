@@ -39,8 +39,10 @@ const ChatProfiles = () => {
       } catch (error) {
         console.log(error.message);
       }
-    };
-    fetchCurrChatMessage();
+    }
+    setInterval(() => {
+       fetchCurrChatMessage();
+    }, 1000);
   };
 
   return (
